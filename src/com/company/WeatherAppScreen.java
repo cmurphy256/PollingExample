@@ -30,8 +30,12 @@ public class WeatherAppScreen implements Runnable{
     @Override
     public void run() {
         while(true){
-            this.previousTemperature = this.currentTemperature;
-            this.currentTemperature = this.baseStation.getTemperature();
+            
+            if(this.baseStation.getTemperature() != this.currentTemperature){
+                this.previousTemperature = this.currentTemperature;
+                this.currentTemperature = this.baseStation.getTemperature();
+            }
+
             display();
             try {
                 sleep(Math.round(Math.random()*5000));
